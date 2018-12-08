@@ -35,13 +35,14 @@ public class VierGewinntGUI extends JFrame {
             JButton button = new JButton();
             button.setOpaque(true);
             button.setText("v");
+            button.setName(i + "");
             button.setHorizontalAlignment(JLabel.CENTER);
             button.addMouseListener(new MouseAdapter() {
-                    @Override
-                    public void mouseClicked(java.awt.event.MouseEvent event) {
-                        onButtonClicked(event);
-                    }
-                });
+                @Override
+                public void mouseClicked(java.awt.event.MouseEvent event) {
+                    onButtonClicked(event);
+                }
+            });
             container.add(button);
         }
 
@@ -56,9 +57,34 @@ public class VierGewinntGUI extends JFrame {
             }
         }
     }
-    
+
     private void onButtonClicked(MouseEvent event) {
-        
+        try{
+        JButton button = (JButton) event.getSource();
+        int column = Integer.parseInt(button.getName());
+        Value winner = this.viergewinntbl.makeMove(column);
+        Value val = this.viergewinntbl.getValueAt(column);
+        /*switch (val) {
+                case X:
+                    label.setBackground(Color.red);
+                    break;
+                case O:
+                    label.setBackground(Color.blue);
+                    break;
+            }
+
+            if (winner != Value.EMPTY) {
+                JOptionPane.showMessageDialog(this, "Winner = " + winner);
+                ticTacToeBl.reset();
+
+                for (Component component : this.getContentPane().getComponents()) {
+                    JLabel lb = (JLabel) component;
+                    lb.setBackground(Color.black);
+                }
+            }*/
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
 }
