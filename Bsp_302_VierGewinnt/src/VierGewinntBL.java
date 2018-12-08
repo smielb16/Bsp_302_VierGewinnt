@@ -17,6 +17,7 @@ public class VierGewinntBL {
                 field[row][col] = Value.EMPTY;
             }
         }
+        mappedRows.clear();
         currentPlayer = Value.X;
     }
 
@@ -67,7 +68,7 @@ public class VierGewinntBL {
         int diagsum2 = 0;
         for (int i = 1; i < field.length; i++) {
             diagsum += field[i][i].getNum();
-            diagsum2 += field[field.length - i][i].getNum();
+            diagsum2 += field[field.length-i][i].getNum();
         }
         if (diagsum == 4 || diagsum2 == 4) {
             return Value.X;

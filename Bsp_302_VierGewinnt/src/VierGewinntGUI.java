@@ -78,7 +78,11 @@ public class VierGewinntGUI extends JFrame {
             if (winner != Value.EMPTY) {
                 JOptionPane.showMessageDialog(this, "Winner = " + winner);
                 viergewinntbl.reset();
-
+                for(int i = 1; i < labelArr.length; i++){
+                    for(int x = 0; x < labelArr[i].length; x++){
+                        labelArr[i][x].setBackground(Color.black);
+                    }
+                }
                 for (Component component : this.getContentPane().getComponents()) {
                     JLabel lb = (JLabel) component;
                     lb.setBackground(Color.black);
