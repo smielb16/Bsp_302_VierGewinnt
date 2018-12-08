@@ -12,8 +12,8 @@ import javax.swing.JOptionPane;
 
 public class VierGewinntGUI extends JFrame {
 
-    private boolean playerOne = true;
-    private VierGewinntBL viergewinntbl;
+    private VierGewinntBL viergewinntbl = new VierGewinntBL();
+    private JLabel[][] labelArr = new JLabel[7][7];
 
     public VierGewinntGUI() {
         super("VierGewinnt");
@@ -46,44 +46,46 @@ public class VierGewinntGUI extends JFrame {
             container.add(button);
         }
 
-        for (int i = 0; i < 7; i++) { //Reihen
-            for (int j = 1; j < 7; j++) { //Spalten
+        for (int i = 1; i < 7; i++) { //Reihen
+            for (int j = 0; j < 7; j++) { //Spalten
                 JLabel label = new JLabel();
                 label.setOpaque(true);
                 label.setBackground(Color.BLACK);
                 label.setForeground(Color.WHITE);
                 label.setHorizontalAlignment(JLabel.CENTER);
+                labelArr[i][j] = label;
                 container.add(label);
             }
         }
     }
 
     private void onButtonClicked(MouseEvent event) {
-        try{
-        JButton button = (JButton) event.getSource();
-        int column = Integer.parseInt(button.getName());
-        Value winner = this.viergewinntbl.makeMove(column);
-        Value val = this.viergewinntbl.getValueAt(column);
-        /*switch (val) {
+        try {
+            JButton button = (JButton) event.getSource();
+            int column = Integer.parseInt(button.getName());
+            Value winner = viergewinntbl.makeMove(column);
+            Value val = viergewinntbl.getValueAt(column);
+            int row = viergewinntbl.getRow(column);
+            switch (val) {
                 case X:
-                    label.setBackground(Color.red);
+                    labelArr[row][column].setBackground(Color.red);
                     break;
                 case O:
-                    label.setBackground(Color.blue);
+                    labelArr[row][column].setBackground(Color.blue);
                     break;
             }
 
             if (winner != Value.EMPTY) {
                 JOptionPane.showMessageDialog(this, "Winner = " + winner);
-                ticTacToeBl.reset();
+                viergewinntbl.reset();
 
                 for (Component component : this.getContentPane().getComponents()) {
                     JLabel lb = (JLabel) component;
                     lb.setBackground(Color.black);
                 }
-            }*/
+            }
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, ex.getMessage());
         }
     }
 
