@@ -83,10 +83,6 @@ public class VierGewinntGUI extends JFrame {
                         labelArr[i][x].setBackground(Color.black);
                     }
                 }
-                for (Component component : this.getContentPane().getComponents()) {
-                    JLabel lb = (JLabel) component;
-                    lb.setBackground(Color.black);
-                }
             }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage());

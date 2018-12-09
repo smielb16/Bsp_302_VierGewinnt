@@ -1,3 +1,6 @@
+//die Erkennung des Gewinners ist unverlässlich, die
+//Implementation der Gewinnermittlung in der Diagonale
+//ist funktionsunfähig
 
 import java.util.HashMap;
 
@@ -40,12 +43,12 @@ public class VierGewinntBL {
             int rowsum = 0;
             for (int j = field[i].length - 1; j >= 0; j--) {
                 rowsum += field[i][j].getNum();
-                if (rowsum == 4) {
-                    return Value.X;
-                }
-                if (rowsum == -4) {
-                    return Value.O;
-                }
+            }
+            if (rowsum == 4) {
+                return Value.X;
+            }
+            if (rowsum == -4) {
+                return Value.O;
             }
         }
 
@@ -64,18 +67,18 @@ public class VierGewinntBL {
         }
 
         //vier in einer Diagonale
-        int diagsum = 0;
+        /*int diagsum = 0;
         int diagsum2 = 0;
         for (int i = 1; i < field.length; i++) {
             diagsum += field[i][i].getNum();
-            diagsum2 += field[field.length-i][i].getNum();
+            diagsum2 += field[3 - i][i].getNum();
         }
         if (diagsum == 4 || diagsum2 == 4) {
             return Value.X;
         }
         if (diagsum == -4 || diagsum2 == -4) {
             return Value.O;
-        }
+        }*/
 
         return Value.EMPTY;
     }
