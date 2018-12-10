@@ -38,48 +38,76 @@ public class VierGewinntBL {
     }
 
     private Value determineWin() {
-        //vier in einer Zeile
-        for (int i = field.length - 1; i > 0; i--) {
-            int rowsum = 0;
-            for (int j = field[i].length - 1; j >= 0; j--) {
-                rowsum += field[i][j].getNum();
-            }
-            if (rowsum == 4) {
-                return Value.X;
-            }
-            if (rowsum == -4) {
-                return Value.O;
+
+        //vier in Spalte
+        for (int i = 1; i < field.length - 3; i++) {
+            for (int j = 0; j < field.length; j++) {
+                if (field[i][j] == Value.X
+                        && field[i + 1][j] == Value.X
+                        && field[i + 2][j] == Value.X
+                        && field[i + 3][j] == Value.X) {
+                    return Value.X;
+                } else if (field[i][j] == Value.O
+                        && field[i + 1][j] == Value.O
+                        && field[i + 2][j] == Value.O
+                        && field[i + 3][j] == Value.O) {
+                    return Value.O;
+                }
             }
         }
 
-        //vier in einer Spalte
-        for (int j = field.length - 1; j >= 0; j--) {
-            int colsum = 0;
-            for (int i = field[j].length - 1; i > 0; i--) {
-                colsum += field[i][j].getNum();
-            }
-            if (colsum == 4) {
-                return Value.X;
-            }
-            if (colsum == -4) {
-                return Value.O;
+        //vier in Reihe
+        for (int j = 0; j < field.length - 3; j++) {
+            for (int i = 1; i < field.length; i++) {
+                if (field[i][j] == Value.O
+                        && field[i][j + 1] == Value.O
+                        && field[i][j + 2] == Value.O
+                        && field[i][j + 3] == Value.O) {
+                    return Value.O;
+                } else if (field[i][j] == Value.X
+                        && field[i][j + 1] == Value.X
+                        && field[i][j + 2] == Value.X
+                        && field[i][j + 3] == Value.X) {
+                    return Value.X;
+                }
             }
         }
 
-        //vier in einer Diagonale
-        /*int diagsum = 0;
-        int diagsum2 = 0;
-        for (int i = 1; i < field.length; i++) {
-            diagsum += field[i][i].getNum();
-            diagsum2 += field[3 - i][i].getNum();
+        //aufsteigend diagonal
+        for (int i = 4; i < field.length; i++) {
+            for (int j = 0; j < field.length-3; j++) {
+                if (field[i][j] == Value.O
+                        && field[i - 1][j + 1] == Value.O
+                        && field[i - 2][j + 2] == Value.O
+                        && field[i - 3][j + 3] == Value.O) {
+                    return Value.O;
+                } else if (field[i][j] == Value.X
+                        && field[i - 1][j + 1] == Value.X
+                        && field[i - 2][j + 2] == Value.X
+                        && field[i - 3][j + 3] == Value.X) {
+                    return Value.X;
+                }
+            }
         }
-        if (diagsum == 4 || diagsum2 == 4) {
-            return Value.X;
+        
+        //absteigend diagonal
+        for (int i = 4; i < field.length; i++) {
+            for (int j = 3; j < field.length; j++) {
+                if (field[i][j] == Value.O
+                        && field[i - 1][j - 1] == Value.O
+                        && field[i - 2][j - 2] == Value.O
+                        && field[i - 3][j - 3] == Value.O) {
+                    return Value.O;
+                } else if (field[i][j] == Value.X
+                        && field[i - 1][j - 1] == Value.X
+                        && field[i - 2][j - 2] == Value.X
+                        && field[i - 3][j - 3] == Value.X) {
+                    return Value.X;
+                }
+            }
         }
-        if (diagsum == -4 || diagsum2 == -4) {
-            return Value.O;
-        }*/
 
+        
         return Value.EMPTY;
     }
 

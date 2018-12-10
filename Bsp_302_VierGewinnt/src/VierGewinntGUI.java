@@ -3,6 +3,8 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JButton;
@@ -37,10 +39,10 @@ public class VierGewinntGUI extends JFrame {
             button.setText("v");
             button.setName(i + "");
             button.setHorizontalAlignment(JLabel.CENTER);
-            button.addMouseListener(new MouseAdapter() {
+            button.addActionListener(new ActionListener() {
                 @Override
-                public void mouseClicked(java.awt.event.MouseEvent event) {
-                    onButtonClicked(event);
+                public void actionPerformed(ActionEvent e) {
+                    onButtonClicked(e);
                 }
             });
             container.add(button);
@@ -59,7 +61,7 @@ public class VierGewinntGUI extends JFrame {
         }
     }
 
-    private void onButtonClicked(MouseEvent event) {
+    private void onButtonClicked(ActionEvent event) {
         try {
             JButton button = (JButton) event.getSource();
             int column = Integer.parseInt(button.getName());
