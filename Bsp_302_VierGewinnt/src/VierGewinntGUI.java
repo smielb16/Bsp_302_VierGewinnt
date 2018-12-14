@@ -103,23 +103,6 @@ public class VierGewinntGUI extends JFrame {
             }
 
             if (winner != Value.EMPTY) {
-                if (winner == Value.O) {
-                    for (int i = 1; i < labelArr.length; i++) {
-                        for (int x = 0; x < labelArr[i].length; x++) {
-                            if (labelArr[i][x].getBackground() == Color.blue) {
-                                labelArr[i][x].setBackground(Color.yellow);
-                            }
-                        }
-                    }
-                } else {
-                    for (int i = 1; i < labelArr.length; i++) {
-                        for (int x = 0; x < labelArr[i].length; x++) {
-                            if (labelArr[i][x].getBackground() == Color.red) {
-                                labelArr[i][x].setBackground(Color.yellow);
-                            }
-                        }
-                    }
-                }
                 JOptionPane.showMessageDialog(this, "Winner = " + winner);
                 viergewinntbl.reset();
                 for (int i = 1; i < labelArr.length; i++) {
