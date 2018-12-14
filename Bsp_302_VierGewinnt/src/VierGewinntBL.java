@@ -75,7 +75,7 @@ public class VierGewinntBL {
 
         //aufsteigend diagonal
         for (int i = 4; i < field.length; i++) {
-            for (int j = 0; j < field.length-3; j++) {
+            for (int j = 0; j < field.length - 3; j++) {
                 if (field[i][j] == Value.O
                         && field[i - 1][j + 1] == Value.O
                         && field[i - 2][j + 2] == Value.O
@@ -89,7 +89,7 @@ public class VierGewinntBL {
                 }
             }
         }
-        
+
         //absteigend diagonal
         for (int i = 4; i < field.length; i++) {
             for (int j = 3; j < field.length; j++) {
@@ -107,7 +107,6 @@ public class VierGewinntBL {
             }
         }
 
-        
         return Value.EMPTY;
     }
 
@@ -115,9 +114,14 @@ public class VierGewinntBL {
         return field[mappedRows.get(col)][col];
     }
 
-    public int getRow(int col) {
+    public int getRow(int col) throws Exception{
         int row = mappedRows.get(col);
-        mappedRows.put(col, mappedRows.get(col) - 1);
+        if (row > 0) {
+            mappedRows.put(col, mappedRows.get(col) - 1);
+        }
+        else{
+            throw new Exception("Row is full!");
+        }
         return row;
     }
 
